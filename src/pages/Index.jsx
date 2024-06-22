@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Container, VStack, Input, Button, Text, Heading, Box } from "@chakra-ui/react";
 
 const Index = () => {
   const [weight, setWeight] = useState("");
@@ -27,32 +26,37 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4} width="100%">
-        <Heading as="h1" size="xl">BMI Calculator</Heading>
-        <Input
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold mb-6 text-center">BMI Calculator</h1>
+        <input
+          className="w-full p-2 mb-4 border border-gray-300 rounded"
           placeholder="Enter weight in kg"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
           type="number"
-          size="lg"
         />
-        <Input
+        <input
+          className="w-full p-2 mb-4 border border-gray-300 rounded"
           placeholder="Enter height in meters"
           value={height}
           onChange={(e) => setHeight(e.target.value)}
           type="number"
-          size="lg"
         />
-        <Button colorScheme="teal" size="lg" onClick={calculateBMI}>Calculate BMI</Button>
-        {error && <Text color="red.500">{error}</Text>}
+        <button
+          className="w-full p-2 mb-4 bg-teal-500 text-white rounded hover:bg-teal-600"
+          onClick={calculateBMI}
+        >
+          Calculate BMI
+        </button>
+        {error && <p className="text-red-500">{error}</p>}
         {bmi && (
-          <Box mt={4} p={4} borderWidth={1} borderRadius="md" width="100%" textAlign="center">
-            <Text fontSize="2xl">Your BMI is: {bmi}</Text>
-          </Box>
+          <div className="mt-4 p-4 border border-gray-300 rounded text-center">
+            <p className="text-xl">Your BMI is: {bmi}</p>
+          </div>
         )}
-      </VStack>
-    </Container>
+      </div>
+    </div>
   );
 };
 
